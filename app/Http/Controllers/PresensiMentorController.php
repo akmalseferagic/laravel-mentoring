@@ -61,7 +61,8 @@ class PresensiMentorController extends Controller
     public function stat($id)
     {
         $userId = Auth::user()->id;
-        $mentorId = Mentor::where('user_id', $userId)->first();
+        // $mentorId = Mentor::where('user_id', $userId)->first();
+        $mentorId = Mentor::findOrfail($id);
         $kelompok = Kelompok::find($id);
         if ($mentorId->id == $kelompok->mentor_id){
             $mentee = Mentee::where('kelompok_id', $id)->get();
